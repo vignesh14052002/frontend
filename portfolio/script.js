@@ -46,7 +46,7 @@ function update(v){
     let paths=document.querySelectorAll("svg path");
     paths.forEach((p,i)=>{
     p.style.setProperty( "d",`path("${backgrounds[v].path}")` );
-    p.style.setProperty( "transform",`translate(${i*10}px,${i*150}px) rotate(8deg) scale(${w<500?300:1030},${w<500?300:500})` )
+    p.style.setProperty( "transform",`translate(${i*2}vw,${(i*15)-30}vh) rotate(8deg) scale(${w<500?300:1030},${w<500?300:500})` )
     p.style.setProperty( "transition","1s" )
     p.addEventListener("mouseenter",(e)=>{
     p.style.setProperty("fill",`rgba(${backgrounds[v].color[0]},${backgrounds[v].color[1]},${backgrounds[v].color[2]},${(i+1)/4})`);
