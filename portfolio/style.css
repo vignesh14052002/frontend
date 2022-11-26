@@ -64,7 +64,6 @@ body{
     color: white;
     user-select: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    width: 10%;
     text-align: center;
     transition: 0.5s;
 }
@@ -110,6 +109,18 @@ svg{
     width: 100%;
     height:2px;
     border-radius: 10px;
+}
+#installApp{
+    border-radius: 30px;
+    width: 8em;
+    height: 3em;
+    border: none;
+}
+#installApp:hover{
+    cursor: pointer;
+    border: 2px solid white;
+    color: white;
+    background-color: black;
 }
 
 @media only screen and (max-width: 768px) {

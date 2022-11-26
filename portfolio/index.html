@@ -1,32 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>front-end</title>
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
+<html>
+<head>
+ 
+  <!-- Responsive -->
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width,
+                 initial-scale=1">
+  <meta http-equiv="X-UA-Compatible"
+        content="ie=edge">
+ 
+  <!-- Title -->
+  <title>Viki's Portfolio</title>
+ 
+  <!-- Meta Tags required for
+       Progressive Web App -->
+  <meta name=
+  "apple-mobile-web-app-status-bar"
+        content="#aa7700">
+  <meta name="theme-color"
+        content="black">
+ 
+  <!-- Manifest File link -->
+  <link rel="manifest"
+        href="manifest.json">
+<link rel="stylesheet" href="./style.css" />
+</head>
+ 
+<body>
     <div class="header">
-      <div class="logo">
-        <div class="firstletter">V</div>
-        <div class="remaining">icky</div>
+        <div class="logo">
+          <div class="firstletter">V</div>
+          <div class="remaining">icky</div>
+        </div>
+        <a href="#" class="mobilemenu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+        <div class="sections"  active="false">
+          <div>Home</div>
+          <div>Blog</div>
+          <div>Gallery</div>
+          <div>About</div>
+          
+        <button id="installApp">Install</button>
+        </div>
       </div>
-      <a href="#" class="mobilemenu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </a>
-      <div class="sections"  active="false">
-        <div>Home</div>
-        <div>Blog</div>
-        <div>Gallery</div>
-        <div>About</div>
-      </div>
-      
-    </div>
-    <div class="background"></div>
-    <script src="./script.js"></script>
-  </body>
+      <div class="background"></div>
+      <script src="./script.js"></script>
+ 
+ 
+  <script>
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        deferredPrompt = e;
+    });
+
+    const installApp = document.getElementById('installApp');
+    installApp.addEventListener('click', async () => {
+        if (deferredPrompt !== null) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                deferredPrompt = null;
+            }
+        }
+    });
+
+    let installed = false;
+installApp.addEventListener('click', async function(){
+  prompt.prompt();
+  let result = await that.prompt.userChoice;
+  if (result&&result.outcome === 'accepted') {
+     installed = true;
+  }
+})
+window.addEventListener('appinstalled', async function(e) {
+   installApp.style.display = "none";
+});
+    // Script for Service Worker
+    window.addEventListener('load', () => {
+      registerSW();
+    });
+ 
+    // Register the Service Worker
+    async function registerSW() {
+      if ('serviceWorker' in navigator) {
+        try {
+          await navigator
+                .serviceWorker
+                .register('serviceworker.js');
+        }
+        catch (e) {
+          console.log('SW registration failed');
+        }
+      }
+    }
+  </script>
+</body>
 </html>
